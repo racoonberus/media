@@ -1,4 +1,4 @@
-# Media (services collection)
+# Media (micro services collection)
 
 Convert and play video
 
