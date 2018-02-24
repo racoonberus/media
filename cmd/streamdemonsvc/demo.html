@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/styles.css"/>
+    <script src="/VideoPlayer.js"></script>
+</head>
+<body>
+
+<div id="mainVideoPlayer">
+    <div style="background: #eee; display: inline-block; position: relative;">
+        <video width="640">
+            <source src="http://localhost:8080/assets/video/1.mp4" type="video/mp4"/>
+            <!--<source src="http://localhost:8080/stream/webm" type="video/webm"/>-->
+            <!--<source src="http://localhost:8080/stream/ogg" type="video/ogg"/>-->
+            <!--<track src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English">-->
+            <!--<track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian">-->
+        </video>
+
+        <div class="progressControl" style="height: 20px; position: absolute; right: 0; bottom: 0; left: 0;">
+            <div class="progressBar" style="width:0; height: 10px; background: black; opacity: 0.5;"></div>
+        </div>
+    </div>
+    <div>
+        <button class="playPauseBtn paused"></button>
+        <input class="volumeControl" type="range" min="0" max="100" step="1"/>
+    </div>
+</div>
+
+<script>
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        VideoPlayer("mainVideoPlayer");
+    }, false);
+</script>
+
+</body>
+</html>

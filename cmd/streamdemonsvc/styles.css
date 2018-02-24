@@ -1,0 +1,11 @@
+.playPauseBtn {
+    width: 32px;
+    height: 32px;
+    background: url("play-pause.png") no-repeat;
+    background-size: cover;
+    background-position-x: -28px;
+}
+
+.playPauseBtn.paused {
+    background-position-x: 0;
+}
