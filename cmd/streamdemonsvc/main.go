@@ -16,6 +16,7 @@ import (
 	"encoding/json"
 	"strings"
 	"log"
+	"github.com/racoonberus/media/middleware"
 )
 
 var cfg struct {
@@ -32,11 +33,15 @@ func init() {
 }
 
 func main() {
+	logger := log.New(os.Stdout, "server: ", log.Lshortfile)
+
 	router := mux.NewRouter()
 	router.HandleFunc("/{filepath:[0-9a-zA-Z/-]+}.{extension:mp4|webm|ogg}", mediaHandler).Methods("GET")
 	router.HandleFunc("/{filepath:[0-9a-zA-Z/-]+}.{extension:mp4|webm|ogg}.meta", metaHandler).Methods("GET")
 	router.HandleFunc("/{filepath:[0-9a-zA-Z/-]+}.{extension:html|css|js|png|jpg}", staticHandler).Methods("GET")
-	http.Handle("/", router)
+
+	http.Handle("/", middleware.Logging(logger)(router))
+
 	http.ListenAndServe(fmt.Sprintf(":%d", cfg.httpPort), nil)
 }
 
